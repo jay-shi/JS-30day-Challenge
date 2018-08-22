@@ -1,0 +1,72 @@
+<html>
+<head>
+    <style>
+        body{
+            background-image: url(https://i.ytimg.com/vi/f1cqRwgPO7M/maxresdefault.jpg);
+            display: flex;
+            flex-flow: column;
+            justify-content: center;
+        }
+        .drum-container{
+            display: flex;
+            flex-flow: row;
+            justify-content: space-around;
+        }
+        .drum-key{
+            color: #F7EBEC;
+            height: 8vh;
+            width: 8vh;
+            font-size: 3vh;
+            font-family: 'Comic Sans MS', 'Arial', 'Helvetica';
+            border-style: solid;
+            border-color: #E3B23C;
+            border-radius: 5px;
+            border-width: 3px;
+            display: flex;
+            flex-flow: row;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="drum-container">
+            <div class="drum-key">
+                <span>A</span>
+            </div>
+            <div class="drum-key">
+                <span>S</span>
+            </div>
+            <div class="drum-key">
+                <span>D</span>
+            </div>
+            <div class="drum-key">
+                <span>F</span>
+            </div>
+            <div class="drum-key">
+                <span>G</span>
+            </div>
+            <div class="drum-key">
+                <span>H</span>
+            </div>
+            <div class="drum-key">
+                <span>J</span>
+            </div>
+            <div class="drum-key">
+                <span>K</span>
+            </div>
+    </div>
+    <audio data-key="" src="./sound/"></audio>
+    <audio data-key="" src="./sound/"></audio>
+    <audio data-key="" src="./sound/"></audio>
+    <audio data-key="" src="./sound/"></audio>
+    <audio data-key="" src="./sound/"></audio>
+    <audio data-key="" src="./sound/"></audio>
+    <script>
+            window.addEventListener('keydown', function(event){
+                console.log(event.keyCode);
+            })
+    </script>
+</body>
+</html>
+
