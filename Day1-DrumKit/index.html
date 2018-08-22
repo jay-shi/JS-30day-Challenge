@@ -14,8 +14,8 @@
         }
         .drum-key{
             color: #F7EBEC;
-            height: 8vh;
-            width: 8vh;
+            height: 10vh;
+            width: 10vh;
             font-size: 3vh;
             font-family: 'Comic Sans MS', 'Arial', 'Helvetica';
             border-style: solid;
@@ -26,46 +26,68 @@
             flex-flow: row;
             justify-content: center;
             align-items: center;
+            transition: all 0.7s;
+        }
+        .playing{
+            transform: scale(1.2);
+            border-color: red;
+            box-shadow: 0 0 5px red;
         }
     </style>
 </head>
 <body>
     <div class="drum-container">
-            <div class="drum-key">
+            <div class="drum-key" data-key="65">
                 <span>A</span>
             </div>
-            <div class="drum-key">
+            <div class="drum-key" data-key="83">
                 <span>S</span>
             </div>
-            <div class="drum-key">
+            <div class="drum-key" data-key="68">
                 <span>D</span>
             </div>
-            <div class="drum-key">
+            <div class="drum-key" data-key="70">
                 <span>F</span>
             </div>
-            <div class="drum-key">
+            <div class="drum-key" data-key="71">
                 <span>G</span>
             </div>
-            <div class="drum-key">
+            <div class="drum-key" data-key="72">
                 <span>H</span>
             </div>
-            <div class="drum-key">
+            <div class="drum-key" data-key="74">
                 <span>J</span>
             </div>
-            <div class="drum-key">
+            <div class="drum-key" data-key="75">
                 <span>K</span>
             </div>
     </div>
-    <audio data-key="" src="./sound/"></audio>
-    <audio data-key="" src="./sound/"></audio>
-    <audio data-key="" src="./sound/"></audio>
-    <audio data-key="" src="./sound/"></audio>
-    <audio data-key="" src="./sound/"></audio>
-    <audio data-key="" src="./sound/"></audio>
+    <audio data-key="65" src="./sound/boom.wav"></audio>
+    <audio data-key="83" src="./sound/clap.wav"></audio>
+    <audio data-key="68" src="./sound/hihat.wav"></audio>
+    <audio data-key="70" src="./sound/kick.wav"></audio>
+    <audio data-key="71" src="./sound/openhat.wav"></audio>
+    <audio data-key="72" src="./sound/ride.wav"></audio>
+    <audio data-key="74" src="./sound/snare.wav"></audio>
+    <audio data-key="75" src="./sound/tink.wav"></audio>
     <script>
-            window.addEventListener('keydown', function(event){
-                console.log(event.keyCode);
-            })
+        function removeClass(node) {
+            node.classList.remove('playing');
+            return;
+        };
+
+        window.addEventListener('keydown', function(event){
+            const audio = document.querySelector(`audio[data-key="${event.keyCode}"]`);
+            const drumKey = document.querySelector(`div[data-key="${event.keyCode}"]`);
+            if(!audio) {
+                console.log("Selected note doesn't exist");
+                return;
+            }
+            audio.currenTime = 0;
+            audio.play();
+            drumKey.classList.add('playing');
+            setTimeout(removeClass.bind(null, drumKey), 500);
+        })
     </script>
 </body>
 </html>
