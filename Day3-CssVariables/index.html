@@ -1,0 +1,60 @@
+<html>
+<head>
+    <style>
+        :root {
+            --blur: 2px;
+            --color: #a3a3a4;
+            --base: 10px;
+        }
+        body{
+            display: flex;
+            flex-flow: row;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--color);
+        }
+        body .test-image{
+            padding: var(--base);
+            filter: blur(var(--blur));
+        }
+        .control-panel{
+            display: flex;
+            flex-flow: column;
+            justify-content: space-around;
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <div class="control-panel">
+        <div>
+            <label>Spacing:</label>
+            <input type="range" name="base" min="10" max="50" data-unit="px" />
+        </div>
+        <div>
+            <label>Color:</label>
+            <input type="color" name="color" value="#a3a3a4" data-unit=""/>
+        </div>
+        <div>
+            <label>Blur:</label>
+            <input type="range" name="blur" min="0" max="10" data-unit="px" />
+        </div>
+    </div>
+    <div class="test-image">
+        <img src="https://wallpaperstudio10.com/static/wpdb/wallpapers/1920x1080/182765.jpg" heigh="400px" width="800px"></div>
+    </div>
+    <script>
+        const inputs = document.querySelectorAll('.control-panel input');
+
+        function handleChange() {
+            console.log(this.value);
+            const suffix = this.dataset.unit;
+            document.documentElement.style.setProperty(`--${this.name}`, this.value.toString()+suffix);
+        }
+
+        inputs.forEach(input => input.addEventListener('change', handleChange));
+        inputs.forEach(input => input.addEventListener('mousemove', handleChange));
+
+    </script>
+</body>
+</html>
