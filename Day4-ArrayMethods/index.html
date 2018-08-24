@@ -61,11 +61,29 @@
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
-    
+    const sortedPeople = people.sort((ppl1, ppl2)=>{
+      if(ppl1.split(",")[0] > ppl2.split(",")[0]){
+        return 1;
+      } else {
+        return -1;
+      }
+    });
+    console.table(sortedPeople);
 
     // 8. Reduce Exercise
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
+    function sumTransportation(accu, transportation){
+      console.log(accu);
+      if(transportation in accu) {
+         accu[transportation] += 1;
+      } else {  
+         accu[transportation] = 1;
+      }
+      return accu;
+    }
+    const summary = data.reduce(sumTransportation, {});
+    console.table(summary);
 
   </script>
 </body>
