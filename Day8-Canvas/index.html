@@ -26,15 +26,17 @@
         if(!isDrawing) return;
         context.beginPath();
         context.moveTo(lastX, lastY);
+        // note here we use [offsetX, offsetY]
         context.lineTo(e.offsetX, e.offsetY);
         context.stroke();
-        lastX = e.offsetX;
-        lastY = e.offsetY;
+        [lastX, lastY] = [e.offsetX, e.offsetY];
         // strokeStyle should be constantly changing at the drawing state
         context.strokeStyle = `hsl(${hue}, 100%, 50%)`;
         context.lineWidth = `${lineW}`;
         if(lineW < 20) lineW += 0.5;
         hue++;
+        // forms a loop for hue values
+        if(hue >= 360) hue = 1;
         console.log(e);
     }
 
@@ -42,8 +44,7 @@
 
     canvas.addEventListener('mousedown', (e)=> {
         isDrawing = true;
-        lastX = e.offsetX;
-        lastY = e.offsetY;
+        [lastX, lastY] = [e.offsetX, e.offsetY];
     });
     canvas.addEventListener('mouseup', ()=>{
         isDrawing = false;
