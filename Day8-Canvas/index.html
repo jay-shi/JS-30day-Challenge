@@ -30,6 +30,7 @@
         context.stroke();
         lastX = e.offsetX;
         lastY = e.offsetY;
+        // strokeStyle should be constantly changing at the drawing state
         context.strokeStyle = `hsl(${hue}, 100%, 50%)`;
         context.lineWidth = `${lineW}`;
         if(lineW < 20) lineW += 0.5;
